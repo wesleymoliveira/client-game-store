@@ -6,10 +6,23 @@ import GlobalStyles from '../src/styles/global'
 
 addDecorator(withNextRouter())
 
+export const parameters = {
+  backgrounds: {
+    default: 'light',
+    values: [
+      { name: 'light', value: theme.colors.white },
+      {
+        name: 'dark',
+        value: theme.colors.mainBg,
+      },
+    ],
+  },
+}
+
 export const decorators = [
   (Story) => (
     <ThemeProvider theme={theme}>
-      <GlobalStyles />
+      <GlobalStyles removeBg />
       <Story />
     </ThemeProvider>
   ),
