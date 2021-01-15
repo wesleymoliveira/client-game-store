@@ -38,10 +38,10 @@
     "styled-media-query": "^2.1.2"
   },
   "devDependencies": {
-    "@types/react-slick": "^0.23.4",
     "@babel/core": "^7.12.10",
     "@babel/plugin-transform-react-jsx": "^7.12.11",
     "@babel/preset-typescript": "^7.12.7",
+    "@testing-library/user-event": "^12.6.0",
     "@storybook/addon-essentials": "^6.1.11",
     "@storybook/react": "^6.1.11",
     "@testing-library/jest-dom": "^5.11.6",
@@ -49,6 +49,7 @@
     "@types/jest": "^26.0.19",
     "@types/node": "^14.14.16",
     "@types/react": "^17.0.0",
+    "@types/react-slick": "^0.23.4",
     "@types/styled-components": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^4.11.0",
     "@typescript-eslint/parser": "^4.11.0",
