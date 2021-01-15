@@ -62,4 +62,25 @@ describe('<Button />', () => {
       '/link',
     )
   })
+
+  it('should render a Minimalist button version with an icon', () => {
+    renderWithTheme(
+      <Button icon={<AddShoppingCart data-testid="icon" />} minimalist>
+        Buy Now
+      </Button>,
+    )
+
+    expect(screen.getByRole('button', { name: /Buy Now/i })).toHaveStyle({
+      background: 'none',
+      color: '#F231A5',
+    })
+
+    expect(screen.getByRole('button', { name: /buy now/i })).toHaveStyleRule(
+      'background',
+      'none',
+      {
+        modifier: ':hover',
+      },
+    )
+  })
 })

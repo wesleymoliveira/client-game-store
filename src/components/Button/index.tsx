@@ -9,6 +9,7 @@ export type ButtonProps = {
   //children?: React.ReactNode
   size?: 'small' | 'medium' | 'large'
   fullWidth?: boolean
+  minimalist?: boolean
   icon?: JSX.Element
   as?: React.ElementType
   //forma bem estrita de tipar...(adicionando osegundo type posso usar o botão como botão ou link)
@@ -19,9 +20,16 @@ const Button = ({
   children,
   size = 'medium',
   fullWidth = false,
+  minimalist = false,
   ...props
 }: ButtonProps) => (
-  <S.Wrapper size={size} fullWidth={fullWidth} hasIcon={!!icon} {...props}>
+  <S.Wrapper
+    size={size}
+    fullWidth={fullWidth}
+    hasIcon={!!icon}
+    minimalist={minimalist}
+    {...props}
+  >
     {!!icon && icon}
     {!!children && <span>{children}</span>}
   </S.Wrapper>
