@@ -1,4 +1,4 @@
-import { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react'
+import { forwardRef, AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react'
 import * as S from './styles'
 
 type ButtonTypes =
@@ -15,19 +15,23 @@ export type ButtonProps = {
   //forma bem estrita de tipar...(adicionando osegundo type posso usar o botão como botão ou link)
   // onClick?: () => (event: React.MouseEvent<HTMLButtonElement>) => void
 } & ButtonTypes
-const Button = ({
-  icon,
-  children,
-  size = 'medium',
-  fullWidth = false,
-  minimalist = false,
-  ...props
-}: ButtonProps) => (
+const Button: React.ForwardRefRenderFunction<S.WrapperProps, ButtonProps> = (
+  {
+    icon,
+    children,
+    size = 'medium',
+    fullWidth = false,
+    minimalist = false,
+    ...props
+  },
+  ref,
+) => (
   <S.Wrapper
     size={size}
     fullWidth={fullWidth}
     hasIcon={!!icon}
     minimalist={minimalist}
+    ref={ref}
     {...props}
   >
     {!!icon && icon}
@@ -35,4 +39,4 @@ const Button = ({
   </S.Wrapper>
 )
 
-export default Button
+export default forwardRef(Button)
