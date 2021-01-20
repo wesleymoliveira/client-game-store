@@ -10,54 +10,39 @@ import Home from '.'
 
 const props = {
   banners: bannerMock,
-  newGames: [gamesMock[0]],
+  newGames: gamesMock,
   mostPopularHighlight: highlightMock,
-  mostPopularGames: [gamesMock[0]],
-  upcommingGames: [gamesMock[0]],
-  upcommingHighlight: highlightMock,
-  upcommingMoreGames: [gamesMock[0]],
-  freeGames: [gamesMock[0]],
+  mostPopularGames: gamesMock,
+  upcomingGames: gamesMock,
+  upcomingHighlight: highlightMock,
+  upcomingMoreGames: gamesMock,
+  freeGames: gamesMock,
   freeHighlight: highlightMock,
 }
 
+jest.mock('components/Showcase', () => {
+  return {
+    __esModule: true,
+    default: function Mock() {
+      return <div data-testid="Mock Showcase"></div>
+    },
+  }
+})
+
+jest.mock('components/BannerSlider', () => {
+  return {
+    __esModule: true,
+    default: function Mock() {
+      return <div data-testid="Mock Banner Slider"></div>
+    },
+  }
+})
+
 describe('<Home />', () => {
-  it('should render Menu,Footer and sections', () => {
+  it('should render banner and showcases', () => {
     renderWithTheme(<Home {...props} />)
 
-    expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument()
-
-    expect(screen.getByRole('heading', { name: /follow/i })).toBeInTheDocument()
-    expect(screen.getAllByRole('img', { name: /won games/i })).toHaveLength(2)
-
-    expect(
-      screen.getByRole('heading', {
-        name: /News/i,
-      }),
-    ).toBeInTheDocument()
-
-    expect(
-      screen.getByRole('heading', {
-        name: /Most popular/i,
-      }),
-    ).toBeInTheDocument()
-
-    expect(
-      screen.getByRole('heading', {
-        name: /Upcomming/i,
-      }),
-    ).toBeInTheDocument()
-
-    expect(
-      screen.getByRole('heading', {
-        name: /Free Games/i,
-      }),
-    ).toBeInTheDocument()
-
-    // banner
-    expect(screen.getAllByText(/defy death 1/i)).toHaveLength(1)
-    // card game ( 5 sections com 1 cards cada = 5x1 = 5)
-    expect(screen.getAllByText(/population zero/i)).toHaveLength(5)
-    // highlight
-    expect(screen.getAllByText(/read dead is back!/i)).toHaveLength(3)
+    expect(screen.getByTestId('Mock Banner Slider')).toBeInTheDocument()
+    expect(screen.getAllByTestId('Mock Showcase')).toHaveLength(5)
   })
 })
