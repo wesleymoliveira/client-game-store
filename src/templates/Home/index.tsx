@@ -1,23 +1,22 @@
+import Base from 'templates/Base'
+
 import { BannerProps } from 'components/Banner'
 import { GameCardProps } from 'components/GameCard'
-
 import { HighlightProps } from 'components/Highlight'
-import Showcase from 'components/Showcase'
-import BannerSlider from 'components/BannerSlider'
 import { Container } from 'components/Container'
-import Menu from 'components/Menu'
-import Footer from 'components/Footer'
+import BannerSlider from 'components/BannerSlider'
+import Showcase from 'components/Showcase'
 
 import * as S from './styles'
 
-export type HomeTemplatesProps = {
+export type HomeTemplateProps = {
   banners: BannerProps[]
   newGames: GameCardProps[]
   mostPopularHighlight: HighlightProps
   mostPopularGames: GameCardProps[]
-  upcommingGames: GameCardProps[]
-  upcommingHighlight: HighlightProps
-  upcommingMoreGames: GameCardProps[]
+  upcomingGames: GameCardProps[]
+  upcomingHighlight: HighlightProps
+  upcomingMoreGames: GameCardProps[]
   freeGames: GameCardProps[]
   freeHighlight: HighlightProps
 }
@@ -25,17 +24,16 @@ export type HomeTemplatesProps = {
 const Home = ({
   banners,
   newGames,
+  mostPopularHighlight,
+  mostPopularGames,
+  upcomingGames,
+  upcomingHighlight,
+  upcomingMoreGames,
   freeGames,
   freeHighlight,
-  mostPopularGames,
-  mostPopularHighlight,
-  upcommingGames,
-  upcommingHighlight,
-  upcommingMoreGames,
-}: HomeTemplatesProps) => (
-  <section>
+}: HomeTemplateProps) => (
+  <Base>
     <Container>
-      <Menu />
       <S.SectionBanner>
         <BannerSlider items={banners} />
       </S.SectionBanner>
@@ -52,18 +50,12 @@ const Home = ({
     />
 
     <S.SectionUpcoming>
-      <Showcase title="Upcoming" games={upcommingGames} />
-      <Showcase highlight={upcommingHighlight} games={upcommingMoreGames} />
+      <Showcase title="Upcoming" games={upcomingGames} />
+      <Showcase highlight={upcomingHighlight} games={upcomingMoreGames} />
     </S.SectionUpcoming>
 
     <Showcase title="Free games" highlight={freeHighlight} games={freeGames} />
-
-    <S.SectionFooter>
-      <Container>
-        <Footer />
-      </Container>
-    </S.SectionFooter>
-  </section>
+  </Base>
 )
 
 export default Home
