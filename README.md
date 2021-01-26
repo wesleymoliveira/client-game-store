@@ -18,12 +18,12 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 ## Commands - yarn
 
-dev: runs your application on localhost:3000
-build: creates the production build version
-start: starts a simple server with the build production code
-lint: runs the linter in all components and pages
-test: runs jest to test all components and pages
-test:watch: runs jest in watch mode
-storybook: runs storybook on localhost:6006
-build-storybook: create the build version of storybook
-generate: create a component structure using 'plop' lib, including test and styles ex: 'yarn generate MyComponent'
+- [x] dev: runs your application on localhost:3000
+- [x] build: creates the production build version
+- [x] start: starts a simple server with the build production code
+- [x] lint: runs the linter in all components and pages
+- [x] test: runs jest to test all components and pages
+- [x] test:watch: runs jest in watch mode
+- [x] storybook: runs storybook on localhost:6006
+- [x] build-storybook: create the build version of storybook
+- [x] generate: create a component structure using 'plop' lib, including test and styles ex: 'yarn generate MyComponent'
