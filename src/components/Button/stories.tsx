@@ -47,3 +47,10 @@ Minimalist.args = {
   children: 'Add to WishList',
   icon: <FavoriteBorder />,
 }
+
+export const Disabled: Story = (args) => <Button {...args} />
+
+Disabled.args = {
+  disabled: true,
+  children: 'Add to WishList',
+}
