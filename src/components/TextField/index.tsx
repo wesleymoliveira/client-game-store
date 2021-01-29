@@ -7,7 +7,6 @@ export type IconPositions = 'left' | 'right'
 export type TextFieldProps = {
   onInput?: (value: string) => void
   label?: string
-  labelFor?: string
   initialValue?: string
   icon?: React.ReactNode
   iconPosition?: IconPositions
@@ -17,9 +16,9 @@ export type TextFieldProps = {
 
 const TextField = ({
   label,
-  labelFor = '',
   initialValue = '',
   icon,
+  name,
   iconPosition = 'left',
   error,
   disabled = false,
@@ -37,7 +36,7 @@ const TextField = ({
 
   return (
     <S.Wrapper disabled={disabled} error={!!error}>
-      {!!label && <S.Label htmlFor={labelFor}>{label}</S.Label>}
+      {!!label && <S.Label htmlFor={name}>{label}</S.Label>}
       <S.InputWrapper>
         {!!icon && <S.Icon iconPosition={iconPosition}>{icon}</S.Icon>}
         <S.Input
@@ -46,6 +45,8 @@ const TextField = ({
           value={value}
           iconPosition={iconPosition}
           disabled={disabled}
+          name={name}
+          {...(label ? { id: name } : {})}
           {...props}
         />
       </S.InputWrapper>
