@@ -6,36 +6,42 @@ import {
 import Link from 'next/link'
 import * as S from './styles'
 
-const ProfileMenu = () => (
-  <S.Nav>
-    <Link href="/profile/me" passHref>
-      <S.Link>
-        <AccountCircle size={24} />
-        <span>My profile</span>
-      </S.Link>
-    </Link>
+export type ProfileMenuProps = {
+  activeLink?: '/profile/me' | '/profile/cards' | '/profile/orders'
+}
 
-    <Link href="/profile/cards" passHref>
-      <S.Link>
-        <FormatListBulleted size={24} />
-        <span>My cards</span>
-      </S.Link>
-    </Link>
+const ProfileMenu = ({ activeLink }: ProfileMenuProps) => {
+  return (
+    <S.Nav>
+      <Link href="/profile/me" passHref>
+        <S.Link isActive={activeLink === '/profile/me'} title="My profile">
+          <AccountCircle size={24} />
+          <span>My profile</span>
+        </S.Link>
+      </Link>
 
-    <Link href="/profile/orders" passHref>
-      <S.Link>
-        <AccountCircle size={24} />
-        <span>My orders</span>
-      </S.Link>
-    </Link>
+      <Link href="/profile/cards" passHref>
+        <S.Link isActive={activeLink === '/profile/cards'} title="My cards">
+          <FormatListBulleted size={24} />
+          <span>My cards</span>
+        </S.Link>
+      </Link>
 
-    <Link href="/logout" passHref>
-      <S.Link>
-        <ExitToApp size={24} />
-        <span>Sign Out</span>
-      </S.Link>
-    </Link>
-  </S.Nav>
-)
+      <Link href="/profile/orders" passHref>
+        <S.Link isActive={activeLink === '/profile/orders'} title="My orders">
+          <AccountCircle size={24} />
+          <span>My orders</span>
+        </S.Link>
+      </Link>
+
+      <Link href="/logout" passHref>
+        <S.Link title="Sign Out">
+          <ExitToApp size={24} />
+          <span>Sign Out</span>
+        </S.Link>
+      </Link>
+    </S.Nav>
+  )
+}
 
 export default ProfileMenu
