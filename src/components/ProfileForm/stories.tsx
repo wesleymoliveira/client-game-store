@@ -2,7 +2,7 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 import ProfileForm from '.'
 
 export default {
-  title: 'ProfileForm',
+  title: 'Profile/ProfileForm',
   component: ProfileForm,
 } as Meta
 
