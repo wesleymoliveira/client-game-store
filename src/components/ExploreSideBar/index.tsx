@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Button from 'components/Button'
 import Checkbox from 'components/CheckBox'
 import Heading from 'components/Heading'
@@ -16,50 +17,57 @@ type Field = {
   name: string
 }
 
-export type ExploreSideBarProps = {
-  items: ItemProps[]
+type Values = {
+  [field: string]: boolean | string
 }
 
-const ExploreSideBar = ({ items }: ExploreSideBarProps) => (
-  <S.Wrapper>
-    <Heading lineBottom lineColor="secondary" size="small">
-      Price
-    </Heading>
+export type ExploreSideBarProps = {
+  items: ItemProps[]
+  initialValues?: Values
+}
 
-    {items.map((item) => (
-      <div key={item.title}>
-        <Heading lineBottom lineColor="secondary" size="small">
-          {item.title}
-        </Heading>
+const ExploreSideBar = ({ items, initialValues = {} }: ExploreSideBarProps) => {
+  const [values, setValues] = useState(initialValues)
 
-        {item.type === 'checkbox' &&
-          item.fields.map((field) => (
-            <Checkbox
-              key={field.name}
-              name={field.name}
-              label={field.label}
-              labelFor={field.name}
-            />
-          ))}
+  return (
+    <S.Wrapper>
+      {items.map((item) => (
+        <div key={item.title}>
+          <Heading lineBottom lineColor="secondary" size="small">
+            {item.title}
+          </Heading>
 
-        {item.type === 'radio' &&
-          item.fields.map((field) => (
-            <Radio
-              key={field.name}
-              id={field.name}
-              value={field.name}
-              name={item.name}
-              label={field.label}
-              labelFor={field.name}
-            />
-          ))}
-      </div>
-    ))}
+          {item.type === 'checkbox' &&
+            item.fields.map((field) => (
+              <Checkbox
+                key={field.name}
+                name={field.name}
+                label={field.label}
+                labelFor={field.name}
+                isChecked={!!values[field.name]}
+              />
+            ))}
 
-    <Button fullWidth size="medium">
-      Filter
-    </Button>
-  </S.Wrapper>
-)
+          {item.type === 'radio' &&
+            item.fields.map((field) => (
+              <Radio
+                key={field.name}
+                id={field.name}
+                value={field.name}
+                name={item.name}
+                label={field.label}
+                labelFor={field.name}
+                defaultChecked={field.name === values[item.name]}
+              />
+            ))}
+        </div>
+      ))}
+
+      <Button fullWidth size="medium">
+        Filter
+      </Button>
+    </S.Wrapper>
+  )
+}
 
 export default ExploreSideBar

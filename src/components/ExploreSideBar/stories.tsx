@@ -19,3 +19,10 @@ export default {
 export const Default: Story<ExploreSideBarProps> = (args) => (
   <ExploreSideBar {...args} />
 )
+
+export const WithInitialValues: Story<ExploreSideBarProps> = (args) => (
+  <ExploreSideBar
+    {...args}
+    initialValues={{ windows: true, sort_by: 'low-to-high' }}
+  />
+)
