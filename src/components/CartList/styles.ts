@@ -18,6 +18,7 @@ export const Footer = styled.div`
     font-weight: ${theme.font.bold};
     padding: 2rem;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 
     ${media.greaterThan('medium')`
