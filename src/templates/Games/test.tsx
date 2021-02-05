@@ -12,10 +12,10 @@ jest.mock('templates/Base', () => ({
   },
 }))
 
-jest.mock('components/ExploreSidebar', () => ({
+jest.mock('components/ExploreSideBar', () => ({
   __esModule: true,
   default: function Mock({ children }: { children: React.ReactNode }) {
-    return <div data-testid="Mock ExploreSidebar">{children}</div>
+    return <div data-testid="Mock ExploreSideBar">{children}</div>
   },
 }))
 
@@ -32,7 +32,7 @@ describe('<Games />', () => {
       <Games filterItems={filterItemsMock} games={[gamesMock[0]]} />,
     )
 
-    expect(screen.getByTestId('Mock ExploreSidebar')).toBeInTheDocument()
+    expect(screen.getByTestId('Mock ExploreSideBar')).toBeInTheDocument()
     expect(screen.getByTestId('Mock GameCard')).toBeInTheDocument()
 
     expect(

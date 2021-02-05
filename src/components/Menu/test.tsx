@@ -10,7 +10,7 @@ describe('<Menu />', () => {
     expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument()
     expect(screen.getByRole('img', { name: /won games/i })).toBeInTheDocument()
     expect(screen.getByLabelText(/search/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/open shopping cart/i)).toBeInTheDocument()
+    expect(screen.getAllByLabelText(/shopping cart/i)).toHaveLength(2)
   })
 
   it('should render open/close mobile Menu', () => {
@@ -38,8 +38,8 @@ describe('<Menu />', () => {
   it('should show registerBox logged out', () => {
     renderWithTheme(<Menu />)
 
-    expect(screen.queryByText(/My account/i)).not.toBeInTheDocument()
-    expect(screen.queryByText(/Wish list/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/My profile/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Wishlist/i)).not.toBeInTheDocument()
 
     expect(screen.getByText(/sign in now/i)).toBeInTheDocument()
     expect(screen.getByText(/sign up/i)).toBeInTheDocument()
@@ -48,8 +48,8 @@ describe('<Menu />', () => {
   it('should show Wish list and Account logged in', () => {
     renderWithTheme(<Menu username="Wes" />)
 
-    expect(screen.getByText(/My account/i)).toBeInTheDocument()
-    expect(screen.getByText(/Wish List/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/my profile/i)).toHaveLength(2)
+    expect(screen.getAllByText(/wishlist/i)).toHaveLength(2)
 
     // quando não tenho certeza se vai ter ou não uso query (toda vez que negar .not.)
     expect(screen.queryByText(/log in now/i)).not.toBeInTheDocument()
