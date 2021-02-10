@@ -3,11 +3,9 @@ import { initializeApollo } from 'utils/apollo'
 import { GetStaticProps } from 'next'
 import Game, { GameTemplateProps } from 'templates/Game'
 
-import galleryMock from 'components/Gallery/mock'
-
-import gameDetailsMock from 'components/GameDetails/mock'
 import gamesMock from 'components/GameCardSlider/mock'
 import highlightMock from 'components/Highlight/mock'
+
 import { QueryGames, QueryGamesVariables } from 'graphql/generated/QueryGames'
 import { QUERY_GAMES, QUERY_GAME_BY_SLUG } from 'graphql/queries/games'
 import {
@@ -56,15 +54,18 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       revalidate: 60,
-      cover: `http://localhost:1337/${game.cover?.src}`,
+      cover: `http://localhost:1337${game.cover?.src}`,
       gameInfo: {
         title: game.name,
         price: game.price,
         description: game.short_description,
       },
-      gallery: game.gallery,
+      gallery: game.gallery.map((image) => ({
+        src: `http://localhost:1337${image.src}`,
+        label: image.label,
+      })),
       description: game.description,
-      details: {
+      gameDetails: {
         developer: game.developers[0].name,
         releaseDate: game.release_date,
         platforms: game.platforms.map((platform) => platform.name),

@@ -1,9 +1,12 @@
 import { Apple, Windows, Linux } from '@styled-icons/fa-brands'
+
 import Heading from 'components/Heading'
 import MediaMatch from 'components/MediaMatch'
+
 import * as S from './styles'
 
 type Platform = 'windows' | 'linux' | 'mac'
+
 type Rating = 'BR0' | 'BR10' | 'BR12' | 'BR14' | 'BR16' | 'BR18'
 
 export type GameDetailsProps = {
