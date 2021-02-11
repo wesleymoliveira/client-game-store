@@ -9,7 +9,7 @@ export const QUERY_HOME = gql`
       ...BannerFragment
     }
     newGames: games(
-      where: { release_date_lte: "2021-02-10" }
+      where: { release_date_lte: "2021-01-27" }
       sort: "release_date:desc"
       limit: 8
     ) {
@@ -27,39 +27,37 @@ export const QUERY_HOME = gql`
     freeGames: games(where: { price: 0 }, sort: "release_date:desc", limit: 8) {
       ...GameFragment
     }
-  }
 
-  sections: home {
-    newGames {
-      title
-      highlight {
-        ...HighlightFragment
-      }
-    }
-    popularGames {
-      title
-      highlight {
-        ...HighlightFragment
-      }
-      games(limit: 8) {
-        ...GameFragment
-      }
-    }
-    upComingGames {
-      title
-      highlight {
-        ...HighlightFragment
-      }
-    }
-    freeGames {
-      title
-      highlight {
-        ...HighlightFragment
-      }
-    }
+    # sections: home {
+    #   newGames {
+    #     title
+    #     highlight {
+    #       ...HighlightFragment
+    #     }
+    #   }
+    #   popularGames {
+    #     title
+    #     highlight {
+    #       ...HighlightFragment
+    #     }
+    #     games(limit: 8) {
+    #       ...GameFragment
+    #     }
+    #   }
+    #   upComingGames {
+    #     title
+    #     highlight {
+    #       ...HighlightFragment
+    #     }
+    #   }
+    #   freeGames {
+    #     title
+    #     highlight {
+    #       ...HighlightFragment
+    #     }
+    #   }
+    # }
   }
-}
   ${BannerFragment}
   ${GameFragment}
-  ${HighlightFragment}
 `

@@ -34,7 +34,15 @@ export async function getStaticProps() {
           ribbonSize: banner.ribbon.sizes,
         }),
       })),
-      newGames: gamesMock,
+      newGames: newGames.map((game) => ({
+        title: game.name,
+        slug: game.slug,
+        developer: game.developers[0].name,
+        img: game.cover?.url
+          ? `http://localhost:1337${game.cover?.url}`
+          : `http://localhost:1337/uploads/nothing.jpg`,
+        price: game.price,
+      })),
       mostPopularHighlight: HighlightMock,
       mostPopularGames: gamesMock,
       upcomingGames: gamesMock,
