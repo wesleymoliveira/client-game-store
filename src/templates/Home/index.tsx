@@ -18,10 +18,10 @@ export type HomeTemplateProps = {
   upcomingHighlight: HighlightProps
   freeGames: GameCardProps[]
   freeHighlight: HighlightProps
-  newGamesTitle: string
-  mostPopularGamesTitle: string
-  upcomingGamesTitle: string
-  freeGamesTitle: string
+  newGamesTitle?: string
+  mostPopularGamesTitle?: string
+  upcomingGamesTitle?: string
+  freeGamesTitle?: string
 }
 
 const Home = ({
@@ -33,10 +33,10 @@ const Home = ({
   upcomingHighlight,
   freeGames,
   freeHighlight,
-  newGamesTitle,
-  mostPopularGamesTitle,
-  freeGamesTitle,
-  upcomingGamesTitle,
+  newGamesTitle = 'New Games',
+  mostPopularGamesTitle = 'PopularGames',
+  freeGamesTitle = 'Free Games',
+  upcomingGamesTitle = 'Upcoming Games',
 }: HomeTemplateProps) => (
   <Base>
     <Container>
