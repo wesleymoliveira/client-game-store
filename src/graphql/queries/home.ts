@@ -28,36 +28,37 @@ export const QUERY_HOME = gql`
       ...GameFragment
     }
 
-    # sections: home {
-    #   newGames {
-    #     title
-    #     highlight {
-    #       ...HighlightFragment
-    #     }
-    #   }
-    #   popularGames {
-    #     title
-    #     highlight {
-    #       ...HighlightFragment
-    #     }
-    #     games(limit: 8) {
-    #       ...GameFragment
-    #     }
-    #   }
-    #   upComingGames {
-    #     title
-    #     highlight {
-    #       ...HighlightFragment
-    #     }
-    #   }
-    #   freeGames {
-    #     title
-    #     highlight {
-    #       ...HighlightFragment
-    #     }
-    #   }
-    # }
+    sections: home {
+      newGames {
+        title
+        highlight {
+          ...HighlightFragment
+        }
+      }
+      popularGames {
+        title
+        highlight {
+          ...HighlightFragment
+        }
+        games(limit: 8) {
+          ...GameFragment
+        }
+      }
+      upComingGames {
+        title
+        highlight {
+          ...HighlightFragment
+        }
+      }
+      freeGames {
+        title
+        highlight {
+          ...HighlightFragment
+        }
+      }
+    }
   }
   ${BannerFragment}
   ${GameFragment}
+  ${HighlightFragment}
 `
