@@ -1,6 +1,6 @@
 import { initializeApollo } from 'utils/apollo'
 import Home, { HomeTemplateProps } from 'templates/Home'
-import bannersMock from 'components/BannerSlider/mock'
+
 import gamesMock from 'components/GameCardSlider/mock'
 import HighlightMock from 'components/Highlight/mock'
 import { QueryHome } from 'graphql/generated/QueryHome'
@@ -13,12 +13,14 @@ export default function Index(props: HomeTemplateProps) {
 export async function getStaticProps() {
   const apolloClient = initializeApollo()
 
-  const { data } = await apolloClient.query<QueryHome>({ query: QUERY_HOME })
+  const {
+    data: { banners, newGames, freeGames, upcommingGames },
+  } = await apolloClient.query<QueryHome>({ query: QUERY_HOME })
 
   return {
     props: {
       revalidate: 60,
-      banners: data.banners.map((banner) => ({
+      banners: banners.map((banner) => ({
         img: banner.image?.url
           ? `http://localhost:1337${banner.image?.url}`
           : `http://localhost:1337/uploads/nothing.jpg`,
