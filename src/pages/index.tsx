@@ -45,10 +45,26 @@ export async function getStaticProps() {
       })),
       mostPopularHighlight: HighlightMock,
       mostPopularGames: gamesMock,
-      upcomingGames: gamesMock,
+      upcomingGames: upcommingGames.map((game) => ({
+        title: game.name,
+        slug: game.slug,
+        developer: game.developers[0].name,
+        img: game.cover?.url
+          ? `http://localhost:1337${game.cover?.url}`
+          : `http://localhost:1337/uploads/nothing.jpg`,
+        price: game.price,
+      })),
       upcomingHighlight: HighlightMock,
-      upcomingMoreGames: gamesMock,
-      freeGames: gamesMock,
+
+      freeGames: freeGames.map((game) => ({
+        title: game.name,
+        slug: game.slug,
+        developer: game.developers[0].name,
+        img: game.cover?.url
+          ? `http://localhost:1337${game.cover?.url}`
+          : `http://localhost:1337/uploads/nothing.jpg`,
+        price: game.price,
+      })),
       freeHighlight: HighlightMock,
     },
   }
