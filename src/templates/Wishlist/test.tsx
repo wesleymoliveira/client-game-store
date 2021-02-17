@@ -11,6 +11,7 @@ const props = {
   games: gamesMock,
   recommendedHighlight: highlightMock,
   recommendedGames: gamesMock,
+  recommendedTitle: 'You may like this games',
 }
 
 jest.mock('components/Showcase', () => ({
