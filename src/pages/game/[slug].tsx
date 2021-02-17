@@ -3,9 +3,6 @@ import { initializeApollo } from 'utils/apollo'
 import { GetStaticProps } from 'next'
 import Game, { GameTemplateProps } from 'templates/Game'
 
-import gamesMock from 'components/GameCardSlider/mock'
-import highlightMock from 'components/Highlight/mock'
-
 import { QueryGames, QueryGamesVariables } from 'graphql/generated/QueryGames'
 import { QUERY_GAMES, QUERY_GAME_BY_SLUG } from 'graphql/queries/games'
 
@@ -15,7 +12,12 @@ import {
   QueryGameBySlug,
   QueryGameBySlugVariables,
 } from 'graphql/generated/QueryGameBySlug'
-import { gamesMapper } from 'utils/mappers'
+import { gamesMapper, highlightMapper } from 'utils/mappers'
+import {
+  QueryUpcoming,
+  QueryUpcomingVariables,
+} from 'graphql/generated/QueryUpcoming'
+import { QUERY_UPCOMING } from 'graphql/queries/upcoming'
 
 const apolloClient = initializeApollo()
 
@@ -41,6 +43,7 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  //get game data
   const { data } = await apolloClient.query<
     QueryGameBySlug,
     QueryGameBySlugVariables
@@ -55,8 +58,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const game = data.games[0]
 
+  //get recommendedGames
   const { data: recommendedData } = await apolloClient.query<QueryRecommended>({
     query: QUERY_RECOMMENDED,
+  })
+
+  //get upcomming games and highlight
+
+  const TODAY = new Date().toISOString().slice(0, 10)
+  const { data: upcomingGames } = await apolloClient.query<
+    QueryUpcoming,
+    QueryUpcomingVariables
+  >({
+    query: QUERY_UPCOMING,
+    variables: { date: TODAY },
   })
 
   return {
@@ -81,8 +96,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         rating: game.rating,
         genres: game.categories.map((category) => category.name),
       },
-      upcomingGames: gamesMock,
-      upcomingHighlight: highlightMock,
+      upcomingTitle: upcomingGames.showcase?.upComingGames?.title,
+      upcomingGames: gamesMapper(upcomingGames.upcommingGames),
+      upcomingHighlight: highlightMapper(
+        upcomingGames.showcase?.upComingGames?.highlight,
+      ),
       recommendedTitle: recommendedData.recommended?.section?.title,
       recommendedGames: gamesMapper(
         recommendedData.recommended?.section?.games,
