@@ -1,4 +1,4 @@
-import { ItemProps } from 'components/ExploreSidebar'
+import { ItemProps } from 'components/ExploreSideBar'
 import { ParsedUrlQueryInput } from 'querystring'
 
 type ParseArgs = {
