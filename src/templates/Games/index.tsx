@@ -1,25 +1,39 @@
-import Base from 'templates/Base'
+import { ParsedUrlQueryInput } from 'querystring'
+import { useRouter } from 'next/router'
+
 import { useQueryGames } from 'graphql/queries/games'
+import { parseQueryStringToFilter, parseQueryStringToWhere } from 'utils/filter'
+
+import Base from 'templates/Base'
 
 import Spinner from 'react-spinner-material'
 import { KeyboardArrowDown as ArrowDown } from '@styled-icons/material-outlined/KeyboardArrowDown'
 import ExploreSideBar, { ItemProps } from 'components/ExploreSideBar'
-import GameCard, { GameCardProps } from 'components/GameCard'
+import GameCard from 'components/GameCard'
 import { Grid } from 'components/Grid'
 import * as S from './styles'
 import theme from 'styles/theme'
 
 export type GamesTemplateProps = {
-  games?: GameCardProps[]
   filterItems: ItemProps[]
 }
 
 const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
+  const { push, query } = useRouter()
+
   const { data, loading, fetchMore } = useQueryGames({
-    variables: { limit: 15 },
+    variables: {
+      limit: 15,
+      where: parseQueryStringToWhere({ queryString: query, filterItems }),
+      sort: query.sort as string | null,
+    },
   })
 
-  const handleFilter = () => {
+  const handleFilter = (items: ParsedUrlQueryInput) => {
+    push({
+      pathname: '/games',
+      query: items,
+    })
     return
   }
 
@@ -30,7 +44,14 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
   return (
     <Base>
       <S.Main>
-        <ExploreSideBar onFilter={handleFilter} items={filterItems} />
+        <ExploreSideBar
+          initialValues={parseQueryStringToFilter({
+            queryString: query,
+            filterItems,
+          })}
+          onFilter={handleFilter}
+          items={filterItems}
+        />
 
         {/* Na prática esse loading nunca vai ser chamado,
             a função initialApolloState alimenta os dados
