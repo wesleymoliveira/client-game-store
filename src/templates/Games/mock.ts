@@ -35,6 +35,10 @@ export const gamesMock = {
           __typename: 'Game',
         },
       ],
+      gamesConnection: {
+        values: [{ id: '1' }, { id: '2' }],
+        __typename: 'GameConnection',
+      },
     },
   },
 }
@@ -58,6 +62,10 @@ export const fetchMoreMock = {
           __typename: 'Game',
         },
       ],
+      gamesConnection: {
+        values: [{ id: '1' }, { id: '2' }],
+        __typename: 'GameConnection',
+      },
     },
   },
 }
