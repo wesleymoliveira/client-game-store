@@ -23,6 +23,7 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
   const { push, query } = useRouter()
 
   const { data, loading, fetchMore } = useQueryGames({
+    notifyOnNetworkStatusChange: true,
     variables: {
       limit: 15,
       where: parseQueryStringToWhere({ queryString: query, filterItems }),
@@ -58,44 +59,42 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
             a função initialApolloState alimenta os dados
             do frontend com a requisição para o backend  - SEO
         */}
-        {loading ? (
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Spinner
-              radius={120}
-              color={theme.colors.primary}
-              stroke={2}
-              visible={true}
+        <section>
+          {data?.games.length ? (
+            <>
+              <Grid>
+                {data?.games.map((game) => (
+                  <GameCard
+                    key={game.slug}
+                    title={game.name}
+                    slug={game.slug}
+                    developer={game.developers[0].name}
+                    img={`http://localhost:1337${game.cover!.url}`}
+                    price={game.price}
+                  />
+                ))}
+              </Grid>
+              <S.ShowMore>
+                {loading ? (
+                  <S.ShowMoreLoading
+                    src="/img/dots.svg"
+                    alt="Loading more games..."
+                  />
+                ) : (
+                  <S.ShowMoreButton role="button" onClick={handleShowMore}>
+                    <p>Show More</p>
+                    <ArrowDown size={35} />
+                  </S.ShowMoreButton>
+                )}
+              </S.ShowMore>
+            </>
+          ) : (
+            <Empty
+              title=":("
+              description="We didn't find any games with this filter"
             />
-          </div>
-        ) : (
-          <section>
-            {data?.games.length ? (
-              <>
-                <Grid>
-                  {data?.games.map((game) => (
-                    <GameCard
-                      key={game.slug}
-                      title={game.name}
-                      slug={game.slug}
-                      developer={game.developers[0].name}
-                      img={`http://localhost:1337${game.cover!.url}`}
-                      price={game.price}
-                    />
-                  ))}
-                </Grid>
-                <S.ShowMore role="button" onClick={handleShowMore}>
-                  <p>Show More</p>
-                  <ArrowDown size={35} />
-                </S.ShowMore>
-              </>
-            ) : (
-              <Empty
-                title=":("
-                description="We didn't find any games with this filter"
-              />
-            )}
-          </section>
-        )}
+          )}
+        </section>
       </S.Main>
     </Base>
   )
