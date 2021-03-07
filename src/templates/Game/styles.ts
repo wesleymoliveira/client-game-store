@@ -66,10 +66,6 @@ export const SectionDescription = styled(Section)`
   `}
 `
 
-export const SectionGameDetails = styled(Section)`
-  ${({ theme }) => css``}
-`
+export const SectionGameDetails = styled(Section)``
 
-export const SectionUpcoming = styled(Section)`
-  ${({ theme }) => css``}
-`
+export const SectionUpcoming = styled(Section)``
