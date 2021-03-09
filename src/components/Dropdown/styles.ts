@@ -8,7 +8,8 @@ export const Wrapper = styled.div<WrapperProps>`
     width: max-content;
     position: relative;
 
-    ${Content} {
+    ${Content},
+    ${Overlay} {
       transition: transform 0.2s ease-in, opacity ${theme.transition.default};
 
       ${isOpen && wrapperModifiers.open()}
@@ -32,6 +33,7 @@ const wrapperModifiers = {
 export const Content = styled.div`
   ${({ theme }) => css`
     display: flex;
+    z-index: ${theme.layers.alwaysOnTop};
     flex-direction: column;
     background: ${theme.colors.white};
     color: ${theme.colors.black};
@@ -55,9 +57,21 @@ export const Title = styled.div`
   ${({ theme }) => css`
     cursor: pointer;
     color: ${theme.colors.white};
+    z-index: ${theme.layers.alwaysOnTop};
     position: relative;
     display: flex;
     align-items: center;
     padding-right: 2.4rem;
+  `}
+`
+export const Overlay = styled.div`
+  ${({ theme }) => css`
+    background: rgba(0, 0, 0, 0.5);
+    z-index: ${theme.layers.overlay};
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
   `}
 `
