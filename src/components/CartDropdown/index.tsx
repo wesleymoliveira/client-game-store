@@ -1,18 +1,13 @@
 import CartIcon from 'components/CartIcon'
 import CartList from 'components/CartList'
 import Dropdown from 'components/Dropdown'
-import { GameItemProps } from 'components/GameItem'
+
 import * as S from './styles'
 
-export type CartDropdownProps = {
-  items?: GameItemProps[]
-  total?: string
-}
-
-const CartDropdown = ({ items, total }: CartDropdownProps) => (
+const CartDropdown = () => (
   <S.Wrapper>
-    <Dropdown title={<CartIcon quantity={items?.length} />}>
-      <CartList hasButton items={items} total={total}></CartList>
+    <Dropdown title={<CartIcon />}>
+      <CartList hasButton></CartList>
     </Dropdown>
   </S.Wrapper>
 )
