@@ -21,7 +21,7 @@ export const Badge = styled.span`
     width: 1.6rem;
     height: 1.6rem;
     position: absolute;
-    top: -0.4rem;
-    right: -0.4rem;
+    top: -0.6rem;
+    right: -0.6rem;
   `}
 `
