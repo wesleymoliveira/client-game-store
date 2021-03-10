@@ -1,19 +1,18 @@
-import { screen } from '@testing-library/react'
-import { renderWithTheme } from 'utils/tests/helpers'
+import { render, screen } from 'utils/test-utils'
 import 'jest-styled-components'
 
 import Logo from '.'
 
 describe('<Logo />', () => {
   it('should render the logo with id passed', () => {
-    const { container } = renderWithTheme(<Logo id="myId" />)
+    const { container } = render(<Logo id="myId" />)
 
     expect(container.querySelector('#paint_linear_myId')).toBeInTheDocument()
   })
 
   it('should render a white label by default', () => {
     //#1 renderizar o component (render)
-    renderWithTheme(<Logo />)
+    render(<Logo />)
     //# 2 selecionar o elemento a ser testado (screen) - queries - getByLabel ....
     //fiz o expect selecionando direto
     //# 3 expect - assertion - comparação ( Espero que o elemento tal tenha a cor branca)
@@ -24,7 +23,7 @@ describe('<Logo />', () => {
 
   it('should render black label when color is passed', () => {
     //#1 renderizar o component (render)
-    renderWithTheme(<Logo color="black" />)
+    render(<Logo color="black" />)
     //# 2 selecionar o elemento a ser testado (screen) - queries - getByLabel ....
 
     //# 3 expect - assertion - comparação ( Espero que o elemento tal tenha a cor branca)
@@ -35,7 +34,7 @@ describe('<Logo />', () => {
 
   it('should rendera bigger logo', () => {
     //#1 renderizar o component (render)
-    renderWithTheme(<Logo size="large" />)
+    render(<Logo size="large" />)
     //# 2 selecionar o elemento a ser testado (screen) - queries - getByLabel ....
 
     //# 3 expect - assertion - comparação ( Espero que o elemento tal tenha a cor branca)
@@ -46,7 +45,7 @@ describe('<Logo />', () => {
 
   it('should rendera normal logo by default', () => {
     //#1 renderizar o component (render)
-    renderWithTheme(<Logo />)
+    render(<Logo />)
     //# 2 selecionar o elemento a ser testado (screen) - queries - getByLabel ....
 
     //# 3 expect - assertion - comparação ( Espero que o elemento tal tenha a cor branca)
@@ -57,7 +56,7 @@ describe('<Logo />', () => {
 
   it('should render a bigger Logo without text on mobile', () => {
     //#1 renderizar o component (render)
-    renderWithTheme(<Logo hideOnMobile />)
+    render(<Logo hideOnMobile />)
     //# 2 selecionar o elemento a ser testado (screen) - queries - getByLabel ....
 
     //# 3 expect - assertion - comparação ( Espero que o elemento tal tenha a cor branca)

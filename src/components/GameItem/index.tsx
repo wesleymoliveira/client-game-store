@@ -48,7 +48,7 @@ const GameItem = ({
 
     {!!paymentInfo && (
       <S.PaymentContent>
-        <p>{paymentInfo.number}</p>
+        <p>{paymentInfo.purchaseDate}</p>
 
         <S.CardInfo>
           <span>{paymentInfo.number}</span>
