@@ -1,4 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0'
+import { CartContextData } from 'hooks/use-cart'
 import GameCard, { GameCardProps } from '.'
 
 export default {
@@ -34,4 +35,14 @@ WithRibbon.args = {
   ribbon: '20% OFF',
   ribbonSize: 'small',
   ribbonColor: 'primary',
+}
+
+export const AlreadyInCart: Story<GameCardProps & CartContextData> = (args) => (
+  <div style={{ width: '30rem' }}>
+    <GameCard {...args} />
+  </div>
+)
+
+AlreadyInCart.args = {
+  isInCart: () => true,
 }
