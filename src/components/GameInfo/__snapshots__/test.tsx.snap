@@ -295,4 +295,4 @@ exports[`<GameInfo /> should render game informations 1`] = `
     </button>
   </div>
 </div>
-`;
+`
