@@ -59,16 +59,13 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
           items={filterItems}
         />
 
-        {/* Na prática esse loading nunca vai ser chamado,
-            a função initialApolloState alimenta os dados
-            do frontend com a requisição para o backend  - SEO
-        */}
         <section>
           {data?.games.length ? (
             <>
               <Grid>
                 {data?.games.map((game) => (
                   <GameCard
+                    id={game.id}
                     key={game.slug}
                     title={game.name}
                     slug={game.slug}
