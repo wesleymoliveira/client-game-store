@@ -35,6 +35,12 @@ exports[`<TextField /> Render with Error 1`] = `
   width: 100%;
 }
 
+.c8:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 2.4rem #EAEAEA inset;
+  -webkit-filter: none;
+  filter: none;
+}
+
 .c6 {
   display: -webkit-box;
   display: -webkit-flex;
