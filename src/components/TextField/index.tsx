@@ -5,7 +5,7 @@ import * as S from './styles'
 export type IconPositions = 'left' | 'right'
 
 export type TextFieldProps = {
-  onInput?: (value: string) => void
+  onInputChange?: (value: string) => void
   label?: string
   initialValue?: string
   icon?: React.ReactNode
@@ -22,7 +22,7 @@ const TextField = ({
   iconPosition = 'left',
   error,
   disabled = false,
-  onInput,
+  onInputChange,
   ...props
 }: TextFieldProps) => {
   const [value, setValue] = useState(initialValue)
@@ -31,7 +31,7 @@ const TextField = ({
     const newValue = e.currentTarget.value
     setValue(newValue)
 
-    !!onInput && onInput(newValue)
+    !!onInputChange && onInputChange(newValue)
   }
 
   return (
