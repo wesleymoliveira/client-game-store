@@ -1,4 +1,5 @@
 import Dropdown from 'components/Dropdown'
+import { signout } from 'next-auth/client'
 import * as S from './styles'
 import {
   AccountCircle,
@@ -37,12 +38,10 @@ const UserDropdown = ({ username }: UserDropdownProps) => (
         </S.WrapperLink>
       </Link>
 
-      <Link href="/logout" passHref>
-        <S.WrapperLink>
-          <ExitToApp />
-          <span>Sign out</span>
-        </S.WrapperLink>
-      </Link>
+      <S.WrapperLink role="button" onClick={() => signout()} title="Sign out">
+        <ExitToApp />
+        <span>Sign out</span>
+      </S.WrapperLink>
     </S.Nav>
   </Dropdown>
 )

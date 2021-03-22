@@ -19,6 +19,7 @@ export const Username = styled.span`
 
 export const WrapperLink = styled.a`
   ${({ theme }) => css`
+    cursor: pointer;
     display: flex;
     align-items: center;
     text-decoration: none;
