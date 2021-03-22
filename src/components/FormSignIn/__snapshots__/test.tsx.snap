@@ -243,4 +243,4 @@ exports[`<FormSignIn /> should render the form 1`] = `
     </div>
   </div>
 </body>
-`;
+`
