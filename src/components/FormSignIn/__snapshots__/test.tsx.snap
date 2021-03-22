@@ -1,6 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<FormSignIn /> should render the form 1`] = `
+.c4 {
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
 .c2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -123,12 +129,6 @@ exports[`<FormSignIn /> should render the form 1`] = `
   color: #1827b5;
 }
 
-.c4 {
-  display: inline-block;
-  vertical-align: middle;
-  overflow: hidden;
-}
-
 <body>
   <div>
     <div
@@ -231,7 +231,8 @@ exports[`<FormSignIn /> should render the form 1`] = `
         <div
           class="c9"
         >
-          Do not have an account?
+          Don’t have an account?
+           
           <a
             href="/sign-up"
           >
@@ -242,4 +243,4 @@ exports[`<FormSignIn /> should render the form 1`] = `
     </div>
   </div>
 </body>
-`
+`;
