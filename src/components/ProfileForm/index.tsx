@@ -3,7 +3,12 @@ import Heading from 'components/Heading'
 import TextField from 'components/TextField'
 import * as S from './styles'
 
-const ProfileForm = () => (
+export type FormProfileProps = {
+  username: string
+  email?: string
+}
+
+const ProfileForm = ({ username, email }: FormProfileProps) => (
   <S.Wrapper>
     <Heading lineBottom color="black" lineColor="primary">
       My profile
@@ -11,17 +16,17 @@ const ProfileForm = () => (
 
     <S.Form>
       <TextField
-        name="name"
-        placeholder="Name"
-        label="Name"
-        initialValue="Wesley M Oliveira"
+        name="username"
+        placeholder="Username"
+        label="Username"
+        initialValue={username}
       />
       <TextField
         name="email"
         type="email"
         placeholder="email"
         label="E-mail"
-        initialValue="wesley@wes.com"
+        initialValue={email}
         disabled
       />
 
