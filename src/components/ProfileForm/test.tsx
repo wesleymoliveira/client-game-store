@@ -4,7 +4,7 @@ import ProfileForm from '.'
 
 describe('<ProfileForm />', () => {
   it('should render the profile form', () => {
-    render(<ProfileForm />)
+    render(<ProfileForm username="Wesley" />)
 
     expect(
       screen.getByRole('heading', { name: /my profile/i }),
@@ -12,12 +12,6 @@ describe('<ProfileForm />', () => {
 
     expect(screen.getByRole('textbox', { name: /name/i })).toBeInTheDocument()
     expect(screen.getByRole('textbox', { name: /e-mail/i })).toBeInTheDocument()
-
-    expect(
-      screen.getByPlaceholderText(/type your password/i),
-    ).toBeInTheDocument()
-
-    expect(screen.getByPlaceholderText(/new password/i)).toBeInTheDocument()
 
     expect(screen.getByRole('button', { name: /save/i })).toBeInTheDocument()
   })
