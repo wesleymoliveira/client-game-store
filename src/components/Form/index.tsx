@@ -51,3 +51,15 @@ export const FormLink = styled.div`
     }
   `}
 `
+
+export const FormSuccess = styled.div`
+  ${({ theme }) => css`
+    font-size: ${theme.font.sizes.small};
+    color: ${theme.colors.black};
+    text-align: center;
+    svg {
+      color: ${theme.colors.secondary};
+      width: 2.4rem;
+    }
+  `}
+`
