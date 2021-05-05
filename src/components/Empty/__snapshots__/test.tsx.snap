@@ -98,4 +98,4 @@ exports[`<Empty /> should render correctly 1`] = `
     </main>
   </div>
 </body>
-`;
+`

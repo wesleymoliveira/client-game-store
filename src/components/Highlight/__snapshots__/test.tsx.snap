@@ -130,4 +130,4 @@ exports[`<Highlight /> should render headings and button 1`] = `
     </a>
   </div>
 </section>
-`;
+`
