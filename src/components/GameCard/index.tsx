@@ -1,10 +1,10 @@
 import Link from 'next/link'
 
 import * as S from './styles'
-import { FavoriteBorder, Favorite } from '@styled-icons/material-outlined'
 import Ribbon, { RibbonSizes, RibbonColors } from 'components/Ribbon'
 import formatPrice from 'utils/formatPrice'
 import CartButton from 'components/CartButton'
+import WishlistButton from 'components/WishlistButton'
 
 export type GameCardProps = {
   id: string
@@ -14,11 +14,9 @@ export type GameCardProps = {
   img: string
   price: number
   promotionalPrice?: number
-  favorite?: boolean
   ribbon?: React.ReactNode
   ribbonColor?: RibbonColors
   ribbonSize?: RibbonSizes
-  onFav?: () => void
 }
 
 const GameCard = ({
@@ -29,11 +27,9 @@ const GameCard = ({
   img,
   price,
   promotionalPrice,
-  favorite = false,
   ribbon,
   ribbonColor = 'primary',
   ribbonSize = 'small',
-  onFav,
 }: GameCardProps) => (
   <S.Wrapper>
     {!!ribbon && (
@@ -53,12 +49,8 @@ const GameCard = ({
           <S.Developer>{developer}</S.Developer>
         </S.Info>
       </Link>
-      <S.FavButton onClick={onFav} role="button">
-        {favorite ? (
-          <Favorite aria-label="Remove from wishList" />
-        ) : (
-          <FavoriteBorder aria-label="Add to wishList" />
-        )}
+      <S.FavButton>
+        <WishlistButton id={id} />
       </S.FavButton>
       <S.BuyBox>
         {!!promotionalPrice && (
